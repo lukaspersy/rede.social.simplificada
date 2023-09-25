@@ -1,10 +1,6 @@
 package br.com.compartilhagram.Model;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
-
 public class RedeSocial {
 
     public Usuario[] usuarioList = new Usuario[3];
@@ -29,6 +25,7 @@ public class RedeSocial {
         for (int i = 0; i < usuarioList.length; i++) {
             if (usuarioList[i] != null) {
                 usuarioList[i].usuarioInfo();
+
             }
         }
     }
@@ -46,10 +43,7 @@ public class RedeSocial {
         int mes = sc.nextInt();
         System.out.print("Ano de Nascimento: ");
         int ano = sc.nextInt();
-        LocalDate data=LocalDate.of(ano,mes,dia);
-        DateTimeFormatter formatador=DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataMascarada=data.format(formatador);
-
+        LocalDate data = LocalDate.of(ano, mes, dia);
 
         for (int i = 0; i < usuarioList.length; i++) {
             if (usuarioList[i] == null) {
