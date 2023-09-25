@@ -1,6 +1,8 @@
 package br.com.compartilhagram.Model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
 public class RedeSocial {
@@ -15,8 +17,6 @@ public class RedeSocial {
         for (int i = 0; i < usuarioList.length; i++) {
             if (usuarioList[i] != null && usuarioList[i].equals(id)) {
                 encontrou = false;
-
-
             }
         }
 
@@ -25,7 +25,7 @@ public class RedeSocial {
 
     public void exibirInfo() {
 
-        System.out.println("== DADOS DO USUÁRIO ==");
+        System.out.println("\u001B[32m== DADOS DO USUÁRIO ==\u001B[m");
         for (int i = 0; i < usuarioList.length; i++) {
             if (usuarioList[i] != null) {
                 usuarioList[i].usuarioInfo();
@@ -40,18 +40,22 @@ public class RedeSocial {
         String nomeUser = sc.nextLine();
         System.out.print("E-mail: ");
         String emailUser = sc.nextLine();
-        System.out.print("Data de Nascimento: ");
-        String data = sc.nextLine();
-        LocalDate dataNascimento = LocalDate.parse(data);
-
-
+        System.out.print("Dia de Nascimento: ");
+        int dia = sc.nextInt();
+        System.out.print("Mês de Nascimento: ");
+        int mes = sc.nextInt();
+        System.out.print("Ano de Nascimento: ");
+        int ano = sc.nextInt();
+        LocalDate data=LocalDate.of(ano,mes,dia);
+        DateTimeFormatter formatador=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataMascarada=data.format(formatador);
 
 
         for (int i = 0; i < usuarioList.length; i++) {
             if (usuarioList[i] == null) {
-                Usuario novo = new Usuario(nomeUser, emailUser, dataNascimento);
+                Usuario novo = new Usuario(nomeUser, emailUser, data);
                 usuarioList[i] = novo;
-                System.out.println("Usuário cadastrado com sucesso!");
+                System.out.println("\u001B[34mUsuário cadastrado com sucesso!\u001B[m");
                 exibirInfo();
                 return novo;
             }
